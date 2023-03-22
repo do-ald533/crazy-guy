@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovementScript : MonoBehaviour
 {
     public float movementSpeed = 5;
 
     public Rigidbody2D rb;
+    public int playScore;
+    public Text score;
 
     private Vector2 movement;
 
@@ -22,5 +25,10 @@ public class PlayerMovementScript : MonoBehaviour
     // movement
     {
         rb.MovePosition(rb.position + movement * movementSpeed * Time.fixedDeltaTime);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        playScore += 1;
+        score.text = playScore.ToString();
     }
 }
